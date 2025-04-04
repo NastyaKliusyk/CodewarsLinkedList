@@ -3,25 +3,19 @@ class Node:
         self.data = data
         self.next = next
 
-def parse(s):
-    if s.lower() == "null":
+def linked_list_from_string(s):
+    if s == "None":
         return None
 
-    nodes = s.split(" -> ")
+    elements = s.split(" -> ")
+    elements.pop()
 
-    head = None
-    current = None
-    
-    for value in nodes:
+    head = Node(int(elements[0]))
+    current = head
 
-        if value.lower() == "none":
-            break
-
-        new_node = Node(int(value))
-        if head is None:
-            head = new_node
-        else:
-            current.next = new_node
-        current = new_node
+    for value in elements[1:]:
+        current.next = Node(int(value))
+        current = current.next
     
     return head
+
